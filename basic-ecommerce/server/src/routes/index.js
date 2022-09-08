@@ -1,0 +1,1 @@
+export {default as logicrouter} from "./logic.route.js"

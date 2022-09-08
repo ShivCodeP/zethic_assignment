@@ -1,0 +1,1 @@
+export {default as logicController} from "./logic.controller.js"
