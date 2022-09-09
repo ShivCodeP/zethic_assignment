@@ -1,4 +1,6 @@
-import { Schema,model } from "mongoose";
+import mongoose from "mongoose";
+
+const { Schema,model } = mongoose;
 
 const checkoutSchema = new Schema({
     product:{type:Schema.Types.ObjectId,ref:"product",required:true},
