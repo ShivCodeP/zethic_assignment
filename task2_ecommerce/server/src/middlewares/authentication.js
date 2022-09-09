@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const verifyToken = (token) => {
+    console.log(process.env.JWT_ACCESS_KEY)
     return new Promise((resolve,reject) => {
         jwt.verify(token,process.env.JWT_ACCESS_KEY, function (err,decoded) {
             if(err) {

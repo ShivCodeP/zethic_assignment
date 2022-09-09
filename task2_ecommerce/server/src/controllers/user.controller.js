@@ -15,15 +15,11 @@ const register = async (req, res) => {
         if (user) return res.status(400).json({ status: "failed", message: "Please provide different email address" })
 
         // else we will create the user
-        user = await Users.create(req.body)
-
-        const token = newToken(user)
-        
-        delete user.password;
+        const newuser = await (await Users.create(req.body));
 
         // return the user and the token
 
-        res.status(201).json({ user, token });
+        res.status(201).json({message: "Successfully registered"});
 
     } catch (e) {
         return res.status(500).json({ status: "failed", message: e.message });
@@ -49,6 +45,7 @@ const login = async (req, res) => {
         const token = newToken(user);
     
         // return the user and the token 
+        delete user.password;
     
         res.status(201).json({user,token});
 
