@@ -26,6 +26,28 @@ const getProduct = async (req,res) => {
     }
 }
 
+const getUserCartProduct = async (req,res) => {
+    try {
+        const user = await Users.findById(req.loginUser.user._id).populate("watchlist");
+
+        return res.send(user.watchlist)
+        
+    } catch (error) {
+        return res.status(500).send({message:"Internal Server Error"})
+    }
+}
+
+const getUserOrderProduct = async (req,res) => {
+    try {
+        const user = await Users.findById(req.loginUser.user._id).populate("order");
+
+        return res.send(user.order)
+        
+    } catch (error) {
+        return res.status(500).send({message:"Internal Server Error"})
+    }
+}
+
 const deleteUserProduct = async (req,res) => {
     try {
 
@@ -50,16 +72,16 @@ const deleteUserProduct = async (req,res) => {
 const postUserProduct = async (req,res) => {
     try {
         const product_id = req.params.id;
+        // console.log(req.loginUser)
 
-        let user = await Users.findById(req.loginUser._id);
+        let user = await Users.findById(req.loginUser.user._id);
+        // console.log(product_id)
 
-        user = await Users.updateOne(user,{watchlist: [...user.watchlist,product_id]});
+        const newuser = await Users.findByIdAndUpdate(user._id,{watchlist: [...user.watchlist,product_id]});
 
-        if(!user) return res.status(400).send({message:"Something went wrong try again"})
+        if(!newuser) return res.status(400).send({message:"Something went wrong try again"})
 
-        delete user.password;
-
-        return res.send(user)
+        return res.send(newuser.watchlist)
         
     } catch (error) {
         console.log(error);
@@ -68,4 +90,4 @@ const postUserProduct = async (req,res) => {
 }
 
 
-export {showProducts,getProduct,deleteUserProduct,postUserProduct};
+export {showProducts,getProduct,deleteUserProduct,postUserProduct,getUserCartProduct,getUserOrderProduct};

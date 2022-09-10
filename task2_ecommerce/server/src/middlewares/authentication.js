@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 
 const verifyToken = (token) => {
-    console.log(process.env.JWT_ACCESS_KEY)
     return new Promise((resolve,reject) => {
         jwt.verify(token,process.env.JWT_ACCESS_KEY, function (err,decoded) {
             if(err) {
@@ -15,14 +14,14 @@ const verifyToken = (token) => {
 
 const authenticateLogin = async (req,res,next) => {
     const bearerToken = req.headers.authorization;
-    
+    // console.log(bearerToken)
     // if not received or token is not a bearer token then throw an error 
 
     if(! bearerToken || !bearerToken.startsWith("Bearer ")) return res.status(400).json({status: "failed",message:"Please provide a valid token"})
 
     // else try to get the user from the token 
     const token = bearerToken.split(" ")[1];
-    console.log(token)
+    // console.log(token)
 
     let user;
     try {

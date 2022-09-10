@@ -4,7 +4,7 @@ const checkout = async (req,res) => {
     try {
        // making the order after checkout
        const payment_status = req.query.payment_status;
-       const user_id = req.loginUser._id;
+       const user_id = req.loginUser.user._id;
        const {ship_address,products} = req.body;
 
        const checkout = await Checkout.create({
@@ -25,7 +25,7 @@ const checkout = async (req,res) => {
 const orderDetail = async (req,res) => {
     try {
         // all order detail of login user
-        const order = await Checkout.find({user:req.loginUser._id}).lean().exec();
+        const order = await Checkout.find({user:req.loginUser.user._id}).populate("products").lean().exec();
 
         return res.send(order)
         
