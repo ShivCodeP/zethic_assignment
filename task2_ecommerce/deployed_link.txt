@@ -1,0 +1,2 @@
+frontend: - https://zethic-ecommerce.vercel.app/
+backend:- https://zethic-ecom.herokuapp.com
