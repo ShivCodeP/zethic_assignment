@@ -1,2 +1,2 @@
-frontend: - https://zethic-ecommerce.vercel.app/
+frontend: - https://zethic-ecommerce-shivcodep.vercel.app/
 backend:- https://zethic-ecom.herokuapp.com
