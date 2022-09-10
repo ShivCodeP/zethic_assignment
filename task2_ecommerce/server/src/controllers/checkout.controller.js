@@ -22,6 +22,7 @@ const checkout = async (req,res) => {
     }
 }
 
+
 const orderDetail = async (req,res) => {
     try {
         // all order detail of login user
