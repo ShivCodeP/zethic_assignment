@@ -1,6 +1,6 @@
 import {LOGIN_ERROR,LOGIN_LOADING,LOGIN_SUCCESS,REGISTER_ERROR,REGISTER_LOADING,REGISTER_SUCCESS,LOGOUT,LOGOUT_LOADING,LOGOUT_SUCCESS} from "./actionType.js";
 
-const loginUser = (user) => ({
+const loginUserError = () => ({
     type: LOGIN_ERROR
 });
 
@@ -12,7 +12,7 @@ const loginUserSuccess = () => ({
     type: LOGIN_SUCCESS
 })
 
-const registerUser = () => ({
+const registerUserError = () => ({
     type: REGISTER_ERROR
 });
 
@@ -37,4 +37,4 @@ const LogoutUserSuccess = (user) => ({
     payload: user
 })
 
-export {loginUser,loginUserLoading,loginUserSuccess,registerUser,registerUserLoading,registerUserSuccess,LogoutUser,LogoutUserLoading,LogoutUserSuccess};
+export {loginUserError,loginUserLoading,loginUserSuccess,registerUserError,registerUserLoading,registerUserSuccess,LogoutUser,LogoutUserLoading,LogoutUserSuccess};

@@ -15,7 +15,7 @@ import { baseUrl } from "../../utils/baseUrl.js";
 const initialState = {
   loading: false,
   isAuth: getToken?true:false,
-  isLogin: false,
+  isLogin: getToken?true:false,
   isRegister:false,
   error: false,
 };
@@ -33,7 +33,8 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         loading: false,
         isAuth: true,
-        error: false
+        error: false,
+        isLogin: true
       };
 
     case LOGIN_ERROR:
@@ -88,42 +89,5 @@ const reducer = (state = initialState, { type, payload }) => {
         return state;
   }
 };
-
-var login = (user) => {
-  fetch(`${baseUrl}/auth/login`, {
-    method: "POST",
-    body: JSON.stringify(user),
-    headers: {
-      "content-type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res);
-      savetoken(res.token);
-      return true;
-    })
-    .catch((err) => {
-      return false;
-    });
-};
-
-var register = (user) => {
-  return fetch(`${baseUrl}/auth/register`, {
-    method: "POST",
-    body: JSON.stringify(user),
-    headers: {
-      "content-type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-
-    })
-    .catch((err) => {
-
-    });
-};
-
 
 export default reducer;

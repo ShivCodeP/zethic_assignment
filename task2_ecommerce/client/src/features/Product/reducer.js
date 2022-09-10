@@ -28,7 +28,7 @@ const reducer = (state=initialState,{type,payload}) => {
             ...state,
             loading: false,
             error: false,
-            watchlist: [...state.watchlist,payload]
+            watchlist: payload
         }
         case DELETE_PRODUCT_ERROR: 
         return {
