@@ -14,8 +14,8 @@ import { baseUrl } from "../../utils/baseUrl.js";
 
 const initialState = {
   loading: false,
-  isAuth: getToken?true:false,
-  isLogin: getToken?true:false,
+  isAuth: getToken()?true:false,
+  isLogin: getToken()?true:false,
   isRegister:false,
   error: false,
 };
