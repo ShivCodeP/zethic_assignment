@@ -15,7 +15,7 @@ const register = async (req, res) => {
         if (user) return res.status(400).json({ status: "failed", message: "Please provide different email address" })
 
         // else we will create the user
-        const newuser = await (await Users.create(req.body));
+        await Users.create(req.body);
 
         // return the user and the token
 
