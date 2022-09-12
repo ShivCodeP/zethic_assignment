@@ -28,10 +28,15 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        savetoken(res.token);
-        dispatch(loginUserSuccess());
-        toast.success("Successfully login");
-        navigate(-1);
+        if(res.token) {
+          savetoken(res.token);
+          dispatch(loginUserSuccess());
+          toast.success("Successfully login");
+          navigate(-1);
+        }
+        else {
+          toast.error(res.message);
+        }
       })
       .catch((err) => {
         dispatch(loginUserError());
